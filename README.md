@@ -12,13 +12,12 @@ Using the container
     `export EDW_PASSWORD="password"`
 
     `export RESTCLIENTS_SWS_OAUTH_BEARER="token"`
+    
 
 2. Build and start the container
 
     `docker-compose up -d --build`
-
-    Note: This step currently takes longer than it needs to, installing packages for R can be streamlined.
-
+    
 
 3. Connect to the container.
     Get the container id and connect to the shell on that container
