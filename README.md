@@ -11,7 +11,7 @@ Using the container
 
     `export EDW_PASSWORD="password"`
 
-    `export SWS_OAUTH_BEARER="token"`
+    `export RESTCLIENTS_SWS_OAUTH_BEARER="token"`
 
 2. Build and start the container
 
