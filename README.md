@@ -1,22 +1,25 @@
 # retention-data-pipeline
 App for getting data into RAD app
 
-This is a docker image that connects to the EDW and a small Django app that fetches and stores data.  Currently it fetches students for a given year and quarter combination
-
-Notes:
-I don't know what broke/changed since I last worked on this, but for whatever reason tdsodbc has to be installed manually despite being included in the Dockerfile.
+This is a docker image that connects to the EDW and a small Django app that fetches and stores data.
 
 
 Using the container
-1. Set environemntal variables for the EDW user and password
+1. Set environemntal variables for the EDW user and password, as well as an SWS authorization bearer token.
 
     `export EDW_USER="netid\\put_netid_here"`
 
     `export EDW_PASSWORD="password"`
 
+    `export SWS_OAUTH_BEARER="token"`
+
 2. Build and start the container
 
-    `docker-compose up -d -build`
+    `docker-compose up -d --build`
+
+    Note: This step currently takes longer than it needs to, installing packages for R can be streamlined.
+
+
 3. Connect to the container.
     Get the container id and connect to the shell on that container
 
@@ -41,20 +44,19 @@ Using the container
     output (this is the container shell):
     `root@770330ba50ed:/app#`
 
-4. Install tdsodbc
 
-    (Again, I don't know why this needs to be installed again after docker installs it and why it worked before.  This is a blocker level bug to using this container)
-    
-    `apt-get install tdsodbc`
-    
-5. Either be on the UW network physically or set up the Big IP VPN client to get a campus IP, EDW is restricted to on-campus networking only (this applies to the host running the docker container, eg your workstation)
+4. Either be on the UW network physically or set up the Big IP VPN client to get a campus IP, EDW is restricted to on-campus networking only (this applies to the host running the docker container, eg your workstation)
 
-6. Activate the virtualenv
+5. Activate the virtualenv
 
     `source bin/activate`
 
-7. Run the test command to verify the connection
+6. Run the test commands to verify connections
 
     `./manage.py edw_connect`
-    
+
     Should take ~30-90 seconds, will only output on error.  You can use the dbshell to see the locally stored data
+
+    `./manage.py term_check_test`
+
+    Runs a script that queries SWS for term info, checks against a local reference term, then will either initiate an R script that connects to the EDW & writes the parameters it's passed to a txt file once per minute or it will exit and return: 'No term change.'

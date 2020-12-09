@@ -7,71 +7,152 @@ class Migration(migrations.Migration):
 
     initial = True
 
-    dependencies = [
-    ]
+    dependencies = []
 
     operations = [
         migrations.CreateModel(
-            name='RawSection',
+            name="RawSection",
             fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('year', models.PositiveSmallIntegerField()),
-                ('quarter', models.PositiveSmallIntegerField(choices=[(1, 'Winter'), (2, 'Spring'), (3, 'Summer'), (4, 'Autumn')], default=1)),
-                ('course_no', models.PositiveSmallIntegerField()),
-                ('dept_abbrev', models.CharField(max_length=6)),
-                ('section_id', models.CharField(max_length=3)),
-                ('sln', models.PositiveIntegerField()),
+                (
+                    "id",
+                    models.AutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("year", models.PositiveSmallIntegerField()),
+                (
+                    "quarter",
+                    models.PositiveSmallIntegerField(
+                        choices=[
+                            (1, "Winter"),
+                            (2, "Spring"),
+                            (3, "Summer"),
+                            (4, "Autumn"),
+                        ],
+                        default=1,
+                    ),
+                ),
+                ("course_no", models.PositiveSmallIntegerField()),
+                ("dept_abbrev", models.CharField(max_length=6)),
+                ("section_id", models.CharField(max_length=3)),
+                ("sln", models.PositiveIntegerField()),
             ],
         ),
         migrations.CreateModel(
-            name='RawStudent',
+            name="RawStudent",
             fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('last_yr_enrolled', models.PositiveSmallIntegerField()),
-                ('last_qtr_enrolled', models.PositiveSmallIntegerField(choices=[(1, 'Winter'), (2, 'Spring'), (3, 'Summer'), (4, 'Autumn')], default=1)),
-                ('system_key', models.PositiveIntegerField()),
-                ('uw_netid', models.CharField(max_length=128)),
-                ('student_no', models.PositiveIntegerField()),
-                ('student_name_lowc', models.TextField()),
-                ('proc_ind', models.PositiveSmallIntegerField()),
-                ('spcl_program', models.PositiveSmallIntegerField()),
-                ('major_campus', models.PositiveSmallIntegerField(choices=[(1, 'Seattle'), (2, 'Tacoma'), (3, 'Bothell')], default=1)),
-                ('deg_level', models.PositiveSmallIntegerField()),
-                ('major_abbr', models.CharField(max_length=6)),
+                (
+                    "id",
+                    models.AutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("last_yr_enrolled", models.PositiveSmallIntegerField()),
+                (
+                    "last_qtr_enrolled",
+                    models.PositiveSmallIntegerField(
+                        choices=[
+                            (1, "Winter"),
+                            (2, "Spring"),
+                            (3, "Summer"),
+                            (4, "Autumn"),
+                        ],
+                        default=1,
+                    ),
+                ),
+                ("system_key", models.PositiveIntegerField()),
+                ("uw_netid", models.CharField(max_length=128)),
+                ("student_no", models.PositiveIntegerField()),
+                ("student_name_lowc", models.TextField()),
+                ("proc_ind", models.PositiveSmallIntegerField()),
+                ("spcl_program", models.PositiveSmallIntegerField()),
+                (
+                    "major_campus",
+                    models.PositiveSmallIntegerField(
+                        choices=[(1, "Seattle"), (2, "Tacoma"), (3, "Bothell")],
+                        default=1,
+                    ),
+                ),
+                ("deg_level", models.PositiveSmallIntegerField()),
+                ("major_abbr", models.CharField(max_length=6)),
             ],
         ),
         migrations.CreateModel(
-            name='StudentRegistration',
+            name="StudentRegistration",
             fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('year', models.PositiveSmallIntegerField()),
-                ('quarter', models.PositiveSmallIntegerField(choices=[(1, 'Winter'), (2, 'Spring'), (3, 'Summer'), (4, 'Autumn')], default=1)),
-                ('department_abbrev', models.CharField(max_length=6)),
-                ('course_number', models.PositiveSmallIntegerField()),
-                ('section_id', models.CharField(max_length=2)),
-                ('system_key', models.PositiveIntegerField()),
-                ('uw_netid', models.CharField(max_length=128)),
-                ('student_no', models.PositiveIntegerField()),
-                ('student_name_lowc', models.TextField()),
-                ('is_international', models.BooleanField(default=False)),
-                ('is_premajor', models.BooleanField(default=False)),
-                ('is_eop', models.BooleanField(default=False)),
+                (
+                    "id",
+                    models.AutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("year", models.PositiveSmallIntegerField()),
+                (
+                    "quarter",
+                    models.PositiveSmallIntegerField(
+                        choices=[
+                            (1, "Winter"),
+                            (2, "Spring"),
+                            (3, "Summer"),
+                            (4, "Autumn"),
+                        ],
+                        default=1,
+                    ),
+                ),
+                ("department_abbrev", models.CharField(max_length=6)),
+                ("course_number", models.PositiveSmallIntegerField()),
+                ("section_id", models.CharField(max_length=2)),
+                ("system_key", models.PositiveIntegerField()),
+                ("uw_netid", models.CharField(max_length=128)),
+                ("student_no", models.PositiveIntegerField()),
+                ("student_name_lowc", models.TextField()),
+                ("is_international", models.BooleanField(default=False)),
+                ("is_premajor", models.BooleanField(default=False)),
+                ("is_eop", models.BooleanField(default=False)),
             ],
         ),
         migrations.CreateModel(
-            name='Student',
+            name="Student",
             fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('year', models.PositiveSmallIntegerField()),
-                ('quarter', models.PositiveSmallIntegerField(choices=[(1, 'Winter'), (2, 'Spring'), (3, 'Summer'), (4, 'Autumn')], default=1)),
-                ('system_key', models.PositiveIntegerField()),
-                ('uw_netid', models.CharField(max_length=128, null=True)),
-                ('is_international', models.BooleanField(default=False)),
-                ('is_premajor', models.BooleanField(default=False)),
-                ('is_eop', models.BooleanField(default=False)),
+                (
+                    "id",
+                    models.AutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("year", models.PositiveSmallIntegerField()),
+                (
+                    "quarter",
+                    models.PositiveSmallIntegerField(
+                        choices=[
+                            (1, "Winter"),
+                            (2, "Spring"),
+                            (3, "Summer"),
+                            (4, "Autumn"),
+                        ],
+                        default=1,
+                    ),
+                ),
+                ("system_key", models.PositiveIntegerField()),
+                ("uw_netid", models.CharField(max_length=128, null=True)),
+                ("is_international", models.BooleanField(default=False)),
+                ("is_premajor", models.BooleanField(default=False)),
+                ("is_eop", models.BooleanField(default=False)),
             ],
             options={
-                'unique_together': {('year', 'quarter', 'system_key')},
+                "unique_together": {("year", "quarter", "system_key")},
             },
         ),
     ]

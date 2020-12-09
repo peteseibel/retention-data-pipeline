@@ -1,6 +1,5 @@
 from django.core.management.base import BaseCommand
-from retention_data_pipeline.data_import.registrations import \
-    get_students_for_term
+from retention_data_pipeline.data_import.registrations import get_students_for_term
 
 
 class Command(BaseCommand):

@@ -35,7 +35,9 @@ def get_day1_enrollments(year, quarter):
             AND mm.mm_proc_ind = 2
             AND deg.mm_branch = {}) as a
     WHERE  a.rn = 1
-    """.format(year, quarter, campus)
+    """.format(
+        year, quarter, campus
+    )
     results = _run_query(DB, db_query)
     return results
 
@@ -54,7 +56,9 @@ def get_ts_courses(year, quarter):
     WHERE
         ts_year = {}
         AND ts_quarter = {}
-    """.format(year, quarter)
+    """.format(
+        year, quarter
+    )
     results = _run_query(DB, db_query)
     return results
 
@@ -72,7 +76,9 @@ def get_registrations(year, quarter):
             regis_yr = {}
             AND regis_qtr = {}
             AND request_status in ('A', 'C', 'R')
-        """.format(year, quarter)
+        """.format(
+        year, quarter
+    )
     results = _run_query(DB, db_query)
     return results
 
@@ -108,7 +114,9 @@ def get_majors(year, quarter):
 
     db_query = """
         #TODO: Determine relationship w/ mini_maser and write query
-        """.format(year, quarter)
+        """.format(
+        year, quarter
+    )
     results = _run_query(DB, db_query)
     return results
 
@@ -120,13 +128,15 @@ def _run_query(database, query):
     password = getattr(settings, "EDW_PASSWORD")
     user = getattr(settings, "EDW_USER")
     server = getattr(settings, "EDW_SERVER")
-    constring = "Driver={FreeTDS};" \
-                f"SERVERNAME={server};" \
-                f"Database={database};" \
-                "Port=1433;" \
-                "TDS_Version=7.2;" \
-                f"UID={user};" \
-                f"PWD={password}"
+    constring = (
+        "Driver={FreeTDS};"
+        f"SERVERNAME={server};"
+        f"Database={database};"
+        "Port=1433;"
+        "TDS_Version=7.2;"
+        f"UID={user};"
+        f"PWD={password}"
+    )
     con = pyodbc.connect(constring)
     df = pandas.read_sql(query, con)
     return df

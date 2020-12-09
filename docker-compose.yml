@@ -6,6 +6,7 @@ services:
       - AUTH=SAML_MOCK
       - EDW_USER
       - EDW_PASSWORD
+      - RESTCLIENTS_SWS_OAUTH_BEARER
     restart: always
     container_name: app
     build:
